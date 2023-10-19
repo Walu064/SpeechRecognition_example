@@ -3,7 +3,7 @@ using System.IO;
 using System.Net.Http;
 using System.Windows;
 using NAudio.Wave;
-
+using Newtonsoft.Json;
 
 namespace SpeechRecognition_example
 {
@@ -81,7 +81,10 @@ namespace SpeechRecognition_example
                         if (response.IsSuccessStatusCode)
                         {
                             var responseContent = response.Content.ReadAsStringAsync().Result;
-                            main_label.Content = "Odpowiedź od API: " + responseContent;
+                            dynamic jsonResponse = JsonConvert.DeserializeObject<dynamic>(responseContent);
+                            string recognizedText = jsonResponse.recognized_text;
+
+                            main_label.Content = "Odpowiedź od API: " + recognizedText;
                         }
                         else
                         {
@@ -99,6 +102,8 @@ namespace SpeechRecognition_example
                 main_label.Content = "Plik nagrania nie istnieje.";
             }
         }
+
+
 
         private void Button_clear_main_label_Click(object sender, RoutedEventArgs e)
         {
