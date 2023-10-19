@@ -1,0 +1,20 @@
+﻿<Window x:Class="SpeechRecognition_example.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SpeechRecognition_example"
+        mc:Ignorable="d"
+        Title="SpeechRecognition - example" Height="400" Width="800">
+    <Grid Margin="0,0,10,11">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="29*"/>
+            <ColumnDefinition Width="366*"/>
+        </Grid.ColumnDefinitions>
+        <Button x:Name="button_start_recording" Content="Rozpocznij/zakończ nagrywanie" HorizontalAlignment="Left" Margin="20,20,0,0" VerticalAlignment="Top" Height="40" Width="180" Click="Button_start_recording_Click" Grid.ColumnSpan="2"/>
+        <Button x:Name="button_display_recognized_text" Content="Wyświetl rozpoznany tekst" HorizontalAlignment="Left" Margin="158,20,0,0" VerticalAlignment="Top" Height="40" Width="179" Click="Button_display_recognized_text_Click" Grid.Column="1"/>
+        <Label x:Name="main_label" Content="Tu wyświetli się rozpoznany tekst..." HorizontalAlignment="Left" Margin="20,79,0,0" VerticalAlignment="Top" Height="245" Width="740" Grid.ColumnSpan="2"/>
+        <Button x:Name="button_clear_main_label" Content="Wyczyść pole tekstowe" HorizontalAlignment="Left" Margin="352,20,0,0" VerticalAlignment="Top" Height="40" Width="180" Click="Button_clear_main_label_Click" Grid.Column="1"/>
+
+    </Grid>
+</Window>

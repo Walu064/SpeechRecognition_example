@@ -1,0 +1,4 @@
+﻿[*.cs]
+
+# CS8622: Dopuszczanie wartości null dla typów referencyjnych w typie parametru nie jest zgodne z docelowym delegatem (prawdopodobnie z powodu atrybutów dopuszczania wartości null).
+dotnet_diagnostic.CS8622.severity = none
