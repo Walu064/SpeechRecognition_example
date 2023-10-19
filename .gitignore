@@ -1,5 +1,6 @@
 #BACKEND:
 /SpeechRecognition_example_backend/.venv
+/SpeechRecognition_example_backend/__pycache__
 
 #DESKTOP:
 /SpeechRecognition_example_desktop/bin/
