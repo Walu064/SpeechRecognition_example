@@ -9,9 +9,9 @@ namespace SpeechRecognition_example
 {
     public partial class MainWindow : Window
     {
-        private WaveInEvent waveIn;
-        private WaveFileWriter waveWriter;
-        private string outputFilePath = "recording_to_recognition.wav";
+        private readonly WaveInEvent waveIn;
+        private WaveFileWriter? waveWriter;
+        private readonly string outputFilePath = "recording_to_recognition.wav";
         private bool isRecording = false;
 
         public MainWindow()
@@ -71,25 +71,23 @@ namespace SpeechRecognition_example
             {
                 try
                 {
-                    using (var client = new HttpClient())
+                    using var client = new HttpClient();
+                    var content = new MultipartFormDataContent();
+                    var fileStream = new FileStream(outputFilePath, FileMode.Open);
+                    content.Add(new StreamContent(fileStream), "file", "recording_to_recognition.wav");
+
+                    var response = client.PostAsync("http://localhost:8000/recognize-speech", content).Result;
+                    if (response.IsSuccessStatusCode)
                     {
-                        var content = new MultipartFormDataContent();
-                        var fileStream = new FileStream(outputFilePath, FileMode.Open);
-                        content.Add(new StreamContent(fileStream), "file", "recording_to_recognition.wav");
+                        var responseContent = response.Content.ReadAsStringAsync().Result;
+                        dynamic? jsonResponse = JsonConvert.DeserializeObject<dynamic>(responseContent);
+                        string recognizedText = jsonResponse.recognized_text;
 
-                        var response = client.PostAsync("http://localhost:8000/recognize-speech", content).Result;
-                        if (response.IsSuccessStatusCode)
-                        {
-                            var responseContent = response.Content.ReadAsStringAsync().Result;
-                            dynamic jsonResponse = JsonConvert.DeserializeObject<dynamic>(responseContent);
-                            string recognizedText = jsonResponse.recognized_text;
-
-                            main_label.Content = "Odpowiedź od API: " + recognizedText;
-                        }
-                        else
-                        {
-                            main_label.Content = "Błąd zapytania API: " + response.StatusCode;
-                        }
+                        main_label.Content = "Odpowiedź od API: " + recognizedText;
+                    }
+                    else
+                    {
+                        main_label.Content = "Błąd zapytania API: " + response.StatusCode;
                     }
                 }
                 catch (Exception ex)

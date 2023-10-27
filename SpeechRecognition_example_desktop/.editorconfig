@@ -2,3 +2,6 @@
 
 # CS8622: Dopuszczanie wartości null dla typów referencyjnych w typie parametru nie jest zgodne z docelowym delegatem (prawdopodobnie z powodu atrybutów dopuszczania wartości null).
 dotnet_diagnostic.CS8622.severity = none
+
+# CS8602: Wyłuskanie odwołania, które może mieć wartość null.
+dotnet_diagnostic.CS8602.severity = none
