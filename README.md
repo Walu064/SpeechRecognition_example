@@ -3,6 +3,7 @@
 ## 1. Instalacja i uruchomienie API
 
 Aby zainstalować i uruchomić API, wykonaj poniższe kroki:
+(Za pomocą Windows PowerShell lub terminala w systemie linux)
 
 1. Sklonuj repozytorium z kodem źródłowym API na swój lokalny komputer:
 ```shell
