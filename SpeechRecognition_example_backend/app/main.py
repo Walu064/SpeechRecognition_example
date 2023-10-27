@@ -28,6 +28,6 @@ async def recognize_speech(file : UploadFile):
         # Usunięcie tymczasowego plik .wav
         os.remove(temp_wav_path)
 
-        return JSONResponse(content={"recognized_text": recognized_text})
+        return JSONResponse(content = {"recognized_text": recognized_text})
     except Exception as e:
-        return JSONResponse(content={"error": f"Nie udało się przetworzyć pliku: {str(e)}"}, status_code = 500)
+        return JSONResponse(content = {"error": f"Nie udało się przetworzyć pliku: {str(e)}"}, status_code = 500)
